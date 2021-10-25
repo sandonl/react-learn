@@ -1,48 +1,31 @@
-import './App.css';
-import Employee from './Employee';
+import "./App.css";
+import Employee from "./Employee";
 
-const employeeInfo = [
+const employees = [
   {
-    firstName: "Jack", 
-    lastName: "Smith",
-    age: "21"
+    name: "Anthony",
+    id: "ABC",
   },
   {
-    firstName: "Stephanie", 
-    lastName: "A",
-    age: "21"
+    name: "George",
+    id: "CBA",
   },
   {
-    firstName: "George", 
-    lastName: "Howdy",
-    age: "21"
+    name: "Stephanie",
+    id: "STE",
   },
-  {
-    firstName: "Wadu", 
-    lastName: "Hek",
-    age: "21"
-  }
 ];
 
 function App() {
-
   return (
     <div className="App">
       <header className="App-header">
         <h1> Company Directory </h1>
-
-        { employeeInfo.map(employee => {
-          return <Employee {...employee} /> 
-        })}
-
-
-
-          {/* <Employee firstName="Jack" lastName="Smith" age="40" />
-          <Employee firstName="Stephanie" lastName="A" age="40" />
-          <Employee firstName="Anthony" lastName="B" age="38"/>
-          <Employee firstName="George" lastName="C" age="38"/> */}
-        
-
+        {employees.map((employee) => (
+          <div key={employee.id}>
+            <Employee name={employee.name} id={employee.id} />
+          </div>
+        ))}
       </header>
     </div>
   );
