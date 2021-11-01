@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Employee from "./Employee";
 
@@ -26,17 +27,28 @@ function App() {
   };
   const firstEmployee = { ...baseEmployeeObject, ...employees[0] };
   console.log(firstEmployee);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1> Company Directory </h1>
-        {employees.map((employee) => (
-          <div key={employee.id}>
-            <Employee {...employee} />
-          </div>
-        ))}
-      </header>
+      {employees && employees.length > 0 && (
+        <header className="App-header">
+          <h1> Company Directory </h1>
+          {loggedIn ? (
+            <h2> Hello! you are logged in </h2>
+          ) : (
+            <h2> Please log in to continue. </h2>
+          )}
+          <button onClick={() => setLoggedIn(!loggedIn)}>
+            {loggedIn ? " Log out" : "Log in"}
+          </button>
+          {employees.map((employee) => (
+            <div key={employee.id}>
+              <Employee {...employee} />
+            </div>
+          ))}
+        </header>
+      )}
     </div>
   );
 }
