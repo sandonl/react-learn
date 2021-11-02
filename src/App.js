@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Employee from "./Employee";
 
@@ -28,6 +28,11 @@ function App() {
   const firstEmployee = { ...baseEmployeeObject, ...employees[0] };
   console.log(firstEmployee);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // Use effect
+  useEffect(() => {
+    console.log("Something has changed in 'App.js");
+  });
 
   return (
     <div className="App">
