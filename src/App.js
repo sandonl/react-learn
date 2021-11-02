@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Counter from "./Counter";
 import Employee from "./Employee";
+import ToDoList from "./ToDoList";
 
 const employees = [
   {
@@ -52,6 +54,9 @@ function App() {
               <Employee {...employee} />
             </div>
           ))}
+
+          <Counter />
+          <ToDoList />
         </header>
       )}
     </div>
