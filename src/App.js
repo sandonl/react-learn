@@ -3,6 +3,11 @@ import "./App.css";
 import Counter from "./Counter";
 import Employee from "./Employee";
 import ToDoList from "./ToDoList";
+import About from "./About";
+import Home from "./Home";
+import Contact from "./Contact";
+import { Switch, Route, Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const employees = [
   {
@@ -23,6 +28,7 @@ const employees = [
 ];
 
 function App() {
+  const history = useHistory();
   const baseEmployeeObject = {
     role: "employee",
     company: "CodeSandbox",
@@ -38,6 +44,27 @@ function App() {
 
   return (
     <div className="App">
+      {/* <button onClick={() => history.push("/about")}> About us </button>
+      <button onClick={() => history.push("/contact")}> Contact us </button>
+      <button onClick={() => history.push("/home")}> Home Page </button> */}
+
+      {/* Acts as a history.push() */}
+      <button>
+        <Link to="/about"> About Us </Link>
+      </button>
+
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </Switch>
+
       {employees && employees.length > 0 && (
         <header className="App-header">
           <h1> Company Directory </h1>
@@ -54,9 +81,6 @@ function App() {
               <Employee {...employee} />
             </div>
           ))}
-
-          <Counter />
-          <ToDoList />
         </header>
       )}
     </div>
