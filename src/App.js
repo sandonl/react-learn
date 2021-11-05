@@ -8,6 +8,7 @@ import Home from "./Home";
 import Contact from "./Contact";
 import { Switch, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const employees = [
   {
@@ -36,6 +37,9 @@ function App() {
   const firstEmployee = { ...baseEmployeeObject, ...employees[0] };
   console.log(firstEmployee);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // Now using redux to access the count variable
+  const count = useSelector((state) => state.counter.count);
 
   // Use effect
   useEffect(() => {
@@ -76,10 +80,16 @@ function App() {
           <button onClick={() => setLoggedIn(!loggedIn)}>
             {loggedIn ? " Log out" : "Log in"}
           </button>
+          {/* Maps the employees to employee component  */}
           {employees.map((employee) => (
             <div key={employee.id}>
               <Employee {...employee} />
             </div>
+          ))}
+          {/* Maps the employees to counter component */}
+          <h3> The count: {count} </h3>
+          {employees.map((voter) => (
+            <Counter name={voter.name} />
           ))}
         </header>
       )}
