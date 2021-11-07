@@ -9,6 +9,8 @@ import Contact from "./Contact";
 import { Switch, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getUser } from "./redux/ducks/user";
 
 const employees = [
   {
@@ -41,10 +43,15 @@ function App() {
   // Now using redux to access the count variable
   const count = useSelector((state) => state.counter.count);
 
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
+
   // Use effect
   useEffect(() => {
-    console.log("Something has changed in 'App.js");
-  });
+    dispatch(getUser());
+  }, [dispatch]);
 
   return (
     <div className="App">
