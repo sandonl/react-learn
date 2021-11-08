@@ -8,9 +8,9 @@ import Home from "./Home";
 import Contact from "./Contact";
 import { Switch, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "./redux/ducks/user";
+import axios from "axios";
 
 const employees = [
   {
@@ -39,19 +39,25 @@ function App() {
   const firstEmployee = { ...baseEmployeeObject, ...employees[0] };
   console.log(firstEmployee);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userExpress, setUserExpress] = useState(undefined);
 
   // Now using redux to access the count variable
   const count = useSelector((state) => state.counter.count);
 
-  const dispatch = useDispatch();
-
   const user = useSelector((state) => state.user.user);
   console.log(user);
+
+  const dispatch = useDispatch();
 
   // Use effect
   useEffect(() => {
     dispatch(getUser());
+    // axios.get(`http://localhost:8081/user`).then((res) => {
+    //   const response = res.data;
+    //   setUserExpress(response);
+    // });
   }, [dispatch]);
+  // console.log(userExpress);
 
   return (
     <div className="App">
@@ -76,6 +82,7 @@ function App() {
         </Route>
       </Switch>
 
+      {/* Ternary operator example  */}
       {employees && employees.length > 0 && (
         <header className="App-header">
           <h1> Company Directory </h1>
