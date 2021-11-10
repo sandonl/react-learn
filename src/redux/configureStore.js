@@ -1,7 +1,7 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import counterReducer from './ducks/counter';
-import userReducer from "./ducks/user";
+import userReducer from "./ducks/userSlice";
 import { watcherSaga } from "./sagas/rootSaga";
 
 const reducer = combineReducers({

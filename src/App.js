@@ -9,7 +9,7 @@ import Contact from "./Contact";
 import { Switch, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "./redux/ducks/user";
+import { getUser } from "./redux/ducks/userSlice";
 import axios from "axios";
 
 const employees = [
@@ -44,14 +44,14 @@ function App() {
   // Now using redux to access the count variable
   const count = useSelector((state) => state.counter.count);
 
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   console.log(user);
 
   const dispatch = useDispatch();
 
   // Use effect
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(getUser({ test: "hi" }));
     // axios.get(`http://localhost:8081/user`).then((res) => {
     //   const response = res.data;
     //   setUserExpress(response);
